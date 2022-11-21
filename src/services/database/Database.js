@@ -25,7 +25,7 @@ export class Database {
     read(collectionKey) {
         const collectionRef = collection(this._database, collectionKey);
         return getDocs(collectionRef).then((documents) => {
-            return documents.docChanges.map((doc) => ({ ...doc.data(), id: doc.id}))
+            return documents.docs.map((doc) => ({ ...doc.data(), id: doc.id}))
         });
     }
     update(collectionKey, id, body) {

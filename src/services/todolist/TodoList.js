@@ -5,7 +5,12 @@ class TodoList {
     }
 
     createTask(body) {
+        // throw new Error('Server is not available') //ошибка вывод, нид еще в кэч
        return this.database.create('tasks', body);
+    }
+
+    getTasks() {
+        return this.database.read('tasks');
     }
 }
 

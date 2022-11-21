@@ -9,15 +9,36 @@ export class InputGroup extends Component {
     constructor() {
         super();
         this.state = {
-            inputValue: ''
+            inputValue: '',
+            isLoading: false,
+            error: '',
         }
     }
 
     onSave() {
         if(this.state.inputValue){
+            this.setState((state) => {
+                return{
+                    ...state,
+                    isLoading: true
+                }
+            })
             todoList.createTask({
                 title: this.state.inputValue,
                 isCompleted: false
+            }).then(() => {
+
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+            .finally(() => {
+                this.setState((state) => {
+                    return{
+                        ...state,
+                        isLoading: false
+                    }
+                })
             })
         }
     }
